@@ -8,12 +8,26 @@ export const getCards = () => {
 
 export const useFalshCardStore = create((set) => ({
   flashCards: getCards(),
-  updateFlashcards: ({ id, key, value }) =>
-    set((state) => ({
-      flashcards: state.flashcards.map((card) =>
+  updateFlashcards: ({ id, key, value }) => {
+    console.log("Updating flashcard:", id, key, value);
+    return set((state) => {
+      let cardsCopy = [...state.flashCards];
+      const updatedCards = cardsCopy.map((card) =>
         card.id === id ? { ...card, [key]: value } : card
-      ),
-    })),
+      );
+      localStorage.setItem("flashcards", JSON.stringify(updatedCards));
+      return {
+        flashCards: updatedCards,
+      };
+    });
+  },
   currentQuestionId: null,
   setCurrentQuestionId: (id) => set({ currentQuestionId: id }),
+  hideMastered: false,
+  setHideMastered: (hide) => set({ hideMastered: hide }),
+  selectedCategory: [],
+  setSelectedCategory: (category) =>
+    set((state) => ({
+      selectedCategory: category ? [...state.selectedCategory, category] : [],
+    })),
 }));

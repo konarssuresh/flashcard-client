@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion as Motion } from "motion/react";
 import clsx from "clsx";
 
-import { useFalshCardStore } from "../../../store/flash-card-store";
 import YellowStar from "../../../common-components/icons/PatternStarYellow";
 import PinkStar from "../../../common-components/icons/PatternStarPink";
 import BlueStar from "../../../common-components/icons/PatternStarBlue";
@@ -28,7 +27,7 @@ const Question = ({ card }) => {
 
 const Answer = ({ card }) => {
   return (
-    <div className="h-61 flex flex-col justify-center gap-4">
+    <div className="min-h-61 flex flex-col justify-center gap-4">
       <p className="text-center text-preset-4">Answer</p>
       <h3 className="text-preset-1-mobile md:text-preset-1-tab lg:text-preset-1 text-center font-bold">
         {card?.answer}
@@ -37,16 +36,27 @@ const Answer = ({ card }) => {
   );
 };
 
-const QuestionCard = () => {
-  const [showAnswer, setShowAnswer] = useState(false);
-  const question = useFalshCardStore(
-    (state) =>
-      state.flashCards.find((card) => card.id === state.currentQuestionId) ||
-      state.flashCards[0]
+const Progress = ({ knownCount }) => {
+  return (
+    <div className="flex flex-row gap-2 items-center">
+      <div className="w-15 h-2 border bg-neutral-0 border-neutral-900 rounded-full">
+        <div
+          className="h-2 bg-neutral-900 rounded-full"
+          style={{ width: `${(knownCount / 5) * 100}%` }}
+        ></div>
+      </div>
+      <span className="text-preset-6 text-neutral-900">{knownCount}/5</span>
+    </div>
   );
+};
 
-  console.log("QuestionCard Rendered");
-  console.log("Current Question:", question);
+const QuestionCard = ({ question }) => {
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setShowAnswer(false);
+  }, [question?.id]);
 
   return (
     <div
@@ -71,6 +81,7 @@ const QuestionCard = () => {
           <div className="flex flex-col text-center items-center">
             <CategoryChip category={question?.category} />
             <Question card={question} />
+            <Progress knownCount={question?.knownCount} />
           </div>
         </Motion.div>
 
@@ -85,6 +96,7 @@ const QuestionCard = () => {
           <div className="flex flex-col text-center items-center">
             <CategoryChip category={question?.category} />
             <Answer card={question} />
+            <Progress knownCount={question?.knownCount} />
           </div>
         </Motion.div>
       </Motion.div>
