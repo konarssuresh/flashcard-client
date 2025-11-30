@@ -39,9 +39,9 @@ const Answer = ({ card }) => {
 const Progress = ({ knownCount }) => {
   return (
     <div className="flex flex-row gap-2 items-center">
-      <div className="w-15 h-2 border bg-neutral-0 border-neutral-900 rounded-full">
+      <div className="relative w-15 h-2  bg-neutral-0 border-neutral-900 rounded-full">
         <div
-          className="h-2 bg-neutral-900 rounded-full"
+          className="absolute h-2  top-0 left-0 bg-neutral-900 rounded-full"
           style={{ width: `${(knownCount / 5) * 100}%` }}
         ></div>
       </div>
