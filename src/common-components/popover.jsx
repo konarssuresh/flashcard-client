@@ -68,12 +68,12 @@ const Popover = ({
       <AnimatePresence>
         {isOpen && children && (
           <Motion.div
-            whileInView={{ opacity: [0, 1], scale: [0.95, 1] }}
-            transition={{ duration: 0.2 }}
+            whileInView={{ opacity: [0, 1] }}
+            transition={{ duration: 0.6 }}
             onClick={handleClick}
             className={`absolute z-10 ${classes} bg-neutral-0 border border-neutral-900 rounded shadow-lg w-56 `}
           >
-            <div className="px-2 py-1.5">{children}</div>
+            <div className=" py-1.5">{children}</div>
           </Motion.div>
         )}
       </AnimatePresence>

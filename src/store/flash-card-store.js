@@ -26,8 +26,13 @@ export const useFalshCardStore = create((set) => ({
   hideMastered: false,
   setHideMastered: (hide) => set({ hideMastered: hide }),
   selectedCategory: [],
-  setSelectedCategory: (category) =>
+  addCategory: (category) =>
     set((state) => ({
       selectedCategory: category ? [...state.selectedCategory, category] : [],
     })),
+  removeCategory: (category) =>
+    set((state) => ({
+      selectedCategory: state.selectedCategory.filter((c) => c !== category),
+    })),
+  setSelectedCategory: (categories) => set({ selectedCategory: categories }),
 }));

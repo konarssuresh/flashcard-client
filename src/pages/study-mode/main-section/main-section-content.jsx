@@ -32,20 +32,20 @@ const MainSectionContent = ({ currentCard }) => {
       <QuestionCard question={card} />
       <div
         className={clsx({
-          "flex flex-row gap-5 justify-center": true,
+          "flex flex-col md:flex-row gap-5 justify-center": true,
         })}
       >
         <Button
           onClick={handleKnowThis}
           variant="primary"
-          className={"flex flex-row gap-3 items-center"}
+          className={"flex flex-row gap-3 items-center justify-center"}
         >
           <IconCheck /> <span>I Know This</span>
         </Button>
         <Button
           onClick={handleResetProgress}
           variant="secondary"
-          className={"flex flex-row gap-3 items-center"}
+          className={"flex flex-row gap-3 items-center justify-center"}
         >
           <IconReset />
           <span>Reset Progress</span>

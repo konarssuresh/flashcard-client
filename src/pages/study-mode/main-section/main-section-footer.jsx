@@ -11,7 +11,7 @@ const MainSectionFooter = ({ onNext, onPrev, label }) => {
         className={"flex flex-row gap-3 items-center drop-shadow-none"}
       >
         <IconChevronLeft />
-        <span>Previous</span>
+        <span className="hidden md:flex">Previous</span>
       </Button>
 
       <p className="text-preset-5 text-neutral-600">{label}</p>
@@ -22,7 +22,7 @@ const MainSectionFooter = ({ onNext, onPrev, label }) => {
         className={"flex flex-row gap-3 items-center drop-shadow-none"}
       >
         <IconChevronRight />
-        <span>Next</span>
+        <span className="hidden md:flex">Next</span>
       </Button>
     </div>
   );
