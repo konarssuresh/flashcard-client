@@ -39,15 +39,18 @@ const Statistics = ({ cards }) => {
   const totalCards = displayCards.length;
   const masteredCards = reduce(
     displayCards,
-    (acc, curr) => (acc + curr.knownCount === 5 ? 1 : 0),
+    (acc, curr) => acc + (curr.knownCount === 5 ? 1 : 0),
     0
   );
 
   const inProgressCards = reduce(
     displayCards,
-    (acc, curr) => acc + (curr.knownCount > 0 && curr.knownCount < 5 ? 1 : 0),
+    (acc, curr) =>
+      acc + (curr.knownCount !== 0 && curr.knownCount < 5) ? 1 : 0,
     0
   );
+
+  console.log(displayCards);
 
   const notStartedCards = reduce(
     displayCards,
