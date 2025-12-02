@@ -6,7 +6,7 @@ import YellowStar from "../../../common-components/icons/PatternStarYellow";
 import PinkStar from "../../../common-components/icons/PatternStarPink";
 import BlueStar from "../../../common-components/icons/PatternStarBlue";
 
-const CategoryChip = ({ category }) => {
+export const CategoryChip = ({ category }) => {
   return (
     <span className="text-neutral-900 bg-neutral-0 border border-neutral-900 rounded-full px-3 py-1.5 shadow-">
       {category}
@@ -36,7 +36,7 @@ const Answer = ({ card }) => {
   );
 };
 
-const Progress = ({ knownCount }) => {
+export const Progress = ({ knownCount }) => {
   return (
     <div className="flex flex-row gap-2 items-center">
       <div className="relative w-15 h-2  bg-neutral-0 border-neutral-900 rounded-full">

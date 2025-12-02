@@ -39,7 +39,7 @@ const Statistics = ({ cards }) => {
   const totalCards = displayCards.length;
   const masteredCards = reduce(
     displayCards,
-    (acc, curr) => (acc + curr.knownCount < 5 ? 0 : 1),
+    (acc, curr) => (acc + curr.knownCount === 5 ? 1 : 0),
     0
   );
 

@@ -9,7 +9,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         cards: action.payload.cards,
-        currentCard: action.payload.cards?.[0] || null,
+        currentCard: state.currentCard || action.payload.cards?.[0] || null,
       };
     case "NEXT_CARD": {
       const currentIndex = state.cards.indexOf(state.currentCard);

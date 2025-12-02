@@ -67,7 +67,7 @@ const CategoriesDropdown = () => {
   );
 };
 
-const MainSectionHeader = ({ onShuffle }) => {
+const MainSectionHeader = ({ onShuffle, showShuffle = true }) => {
   const { hideMastered, setHideMastered } = useFalshCardStore();
   return (
     <div className="p-3 md:p-5 flex flex-row justify-between">
@@ -92,14 +92,16 @@ const MainSectionHeader = ({ onShuffle }) => {
           </Motion.label>
         </div>
       </div>
-      <Button
-        onClick={onShuffle}
-        variant="tertiary"
-        className="flex flex-row gap-2 h-fit items-center"
-      >
-        <IconShuffle />
-        <span>Shuffle</span>
-      </Button>
+      {showShuffle && (
+        <Button
+          onClick={onShuffle}
+          variant="tertiary"
+          className="flex flex-row gap-2 h-fit items-center"
+        >
+          <IconShuffle />
+          <span>Shuffle</span>
+        </Button>
+      )}
     </div>
   );
 };
